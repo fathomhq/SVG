@@ -488,6 +488,29 @@ namespace Svg
             //Trace.TraceInformation("End Render");
         }
 
+        public override string ToString()
+        {
+            using (var ms = new MemoryStream())
+            {
+                using (var xmlWriter = XmlWriter.Create(ms, new XmlWriterSettings {Indent = true}))
+                {
+
+                    xmlWriter.WriteDocType("svg", "-//W3C//DTD SVG 1.1//EN",
+                        "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd", null);
+
+                    if (!String.IsNullOrEmpty(this.ExternalCSSHref))
+                        xmlWriter.WriteProcessingInstruction("xml-stylesheet",
+                            String.Format("type=\"text/css\" href=\"{0}\"", this.ExternalCSSHref));
+
+                    this.WriteElement(xmlWriter);
+
+                    xmlWriter.Flush();
+                }
+
+                return Encoding.UTF8.GetString(ms.ToArray());
+            }            
+        }
+
         public void Write(Stream stream)
         {
 

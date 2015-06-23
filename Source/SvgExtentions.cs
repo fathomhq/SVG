@@ -52,11 +52,10 @@ namespace Svg
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             using (StringWriter str = new StringWriter())
             {
-                using (XmlTextWriter xml = new XmlTextWriter(str))
+                using (XmlWriter xml =  XmlWriter.Create(str))
                 {
                     elem.WriteElement(xml);
                     result = str.ToString();
-
                 }
             }
             Thread.CurrentThread.CurrentCulture = currentCulture;

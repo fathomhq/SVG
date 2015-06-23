@@ -520,7 +520,7 @@ namespace Svg
             this.Render(renderer);
         }
 
-        public void WriteElement(XmlTextWriter writer)
+        public void WriteElement(XmlWriter writer)
         {
             //Save previous culture and switch to invariant for writing
             var previousCulture = Thread.CurrentThread.CurrentCulture;
@@ -532,7 +532,7 @@ namespace Svg
             Thread.CurrentThread.CurrentCulture = previousCulture;
         }
 
-        protected virtual void WriteStartElement(XmlTextWriter writer)
+        protected virtual void WriteStartElement(XmlWriter writer)
         {
             if (this.ElementName != String.Empty)
             {
@@ -552,14 +552,14 @@ namespace Svg
             this.WriteAttributes(writer);
         }
 
-        protected virtual void WriteEndElement(XmlTextWriter writer)
+        protected virtual void WriteEndElement(XmlWriter writer)
         {
             if (this.ElementName != String.Empty)
             {
                 writer.WriteEndElement();
             }
         }
-        protected virtual void WriteAttributes(XmlTextWriter writer)
+        protected virtual void WriteAttributes(XmlWriter writer)
         {
             var styles = new Dictionary<string, string>();
             bool writeStyle;
@@ -676,7 +676,7 @@ namespace Svg
             return resolved;
         }
 
-        protected virtual void Write(XmlTextWriter writer)
+        protected virtual void Write(XmlWriter writer)
         {
             if (this.ElementName != String.Empty)
             {
@@ -686,7 +686,7 @@ namespace Svg
             }
         }
 
-        protected virtual void WriteChildren(XmlTextWriter writer)
+        protected virtual void WriteChildren(XmlWriter writer)
         {
             if (this.Nodes.Any())
             {
