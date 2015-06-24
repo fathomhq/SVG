@@ -494,12 +494,15 @@ namespace Svg
             {
                 var settings = new XmlWriterSettings
                 {
-                    Indent = true,
+                    Indent = false,
+                    NewLineOnAttributes = false,
+                    NewLineHandling = NewLineHandling.None,
                    // DoNotEscapeUriAttributes = true,
                     OmitXmlDeclaration = true,
                   //  NewLineChars = "",
                     //NewLineHandling = NewLineHandling.Replace,
-                    ConformanceLevel = ConformanceLevel.Fragment
+                    ConformanceLevel = ConformanceLevel.Fragment,
+                    Encoding = new UTF8Encoding(false) // Get rid of BOM.
                 };
 
                 using (var xmlWriter = XmlWriter.Create(ms, settings))
