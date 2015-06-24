@@ -536,18 +536,17 @@ namespace Svg
         {
             if (this.ElementName != String.Empty)
             {
-                writer.WriteStartElement(this.ElementName);
                 if (this.ElementName == "svg")
                 {
-					foreach (var ns in SvgAttributeAttribute.Namespaces)
-					{
-						if (string.IsNullOrEmpty(ns.Key))
-							writer.WriteAttributeString("xmlns", ns.Value);
-						else
-							writer.WriteAttributeString("xmlns:" + ns.Key, ns.Value);
-					}
-					writer.WriteAttributeString("version", "1.1");
-				}
+                    writer.WriteStartElement(this.ElementName, SvgAttributeAttribute.SvgNamespace);
+                    writer.WriteAttributeString("xmlns", SvgAttributeAttribute.XLinkPrefix, null, SvgAttributeAttribute.XLinkNamespace);
+                    writer.WriteAttributeString("xmlns", "xml", null, SvgAttributeAttribute.XmlNamespace);
+                    writer.WriteAttributeString("version", "1.1");
+                }
+                else
+                {
+                    writer.WriteStartElement(this.ElementName);
+                }
             }
             this.WriteAttributes(writer);
         }
@@ -603,7 +602,14 @@ namespace Svg
                             }
                             else
                             {
-                                writer.WriteAttributeString(attr.Attribute.NamespaceAndName, value);
+                                if (attr.Attribute.NameSpace != SvgAttributeAttribute.SvgNamespace)
+                                {
+                                    writer.WriteAttributeString(attr.Attribute.Name, attr.Attribute.NameSpace, value);
+                                }
+                                else
+                                {
+                                    writer.WriteAttributeString(attr.Attribute.Name, value);
+                                }
                             }
                         }
                     }
@@ -616,7 +622,14 @@ namespace Svg
                         }
                         else
                         {
-                            writer.WriteAttributeString(attr.Attribute.NamespaceAndName, value);
+                            if (attr.Attribute.NameSpace != SvgAttributeAttribute.SvgNamespace)
+                            {
+                                writer.WriteAttributeString(attr.Attribute.Name, attr.Attribute.NameSpace, value);
+                            }
+                            else
+                            {
+                                writer.WriteAttributeString(attr.Attribute.Name, value);
+                            }
                         }
                     }
                 }
