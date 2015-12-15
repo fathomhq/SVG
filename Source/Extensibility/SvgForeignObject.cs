@@ -9,6 +9,13 @@ namespace Svg
     [SvgElement("foreignObject")]
     public class SvgForeignObject : SvgVisualElement
     {
+
+        private SvgUnit _x;
+        private SvgUnit _y;
+        private SvgUnit _height;
+        private SvgUnit _width;
+
+
         public SvgForeignObject()
         {
         }
@@ -20,6 +27,78 @@ namespace Svg
         public override System.Drawing.Drawing2D.GraphicsPath Path(ISvgRenderer renderer)
         {
             return GetPaths(this, renderer);
+        }
+
+        /// <summary>
+        /// Gets or sets the position where the left point of the rectangle should start.
+        /// </summary>
+        [SvgAttribute("x")]
+        public SvgUnit X
+        {
+            get { return _x; }
+            set
+            {
+                if (_x != value)
+                {
+                    _x = value;
+                    OnAttributeChanged(new AttributeEventArgs { Attribute = "x", Value = value });
+                    IsPathDirty = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the position where the top point of the rectangle should start.
+        /// </summary>
+        [SvgAttribute("y")]
+        public SvgUnit Y
+        {
+            get { return _y; }
+            set
+            {
+                if (_y != value)
+                {
+                    _y = value;
+                    OnAttributeChanged(new AttributeEventArgs { Attribute = "y", Value = value });
+                    IsPathDirty = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the width of the rectangle.
+        /// </summary>
+        [SvgAttribute("width")]
+        public SvgUnit Width
+        {
+            get { return _width; }
+            set
+            {
+                if (_width != value)
+                {
+                    _width = value;
+                    OnAttributeChanged(new AttributeEventArgs { Attribute = "width", Value = value });
+                    IsPathDirty = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the height of the rectangle.
+        /// </summary>
+        [SvgAttribute("height")]
+        public SvgUnit Height
+        {
+            get { return _height; }
+            set
+            {
+                if (_height != value)
+                {
+                    _height = value;
+                    OnAttributeChanged(new AttributeEventArgs { Attribute = "height", Value = value });
+                    IsPathDirty = true;
+                }
+            }
         }
 
         /// <summary>
