@@ -713,7 +713,7 @@ namespace Svg
                     }
                     else if (!string.IsNullOrEmpty(content.Content))
                     {
-                        writer.WriteString(content.Content);
+                        writer.WriteRaw(content.Content);
                     }
                 }
             }
@@ -721,7 +721,7 @@ namespace Svg
             {
                 //write the content
                 if(!String.IsNullOrEmpty(this.Content))
-                    writer.WriteString(this.Content);
+                    writer.WriteRaw(this.Content);
 
                 //write all children
                 foreach (SvgElement child in this.Children)
