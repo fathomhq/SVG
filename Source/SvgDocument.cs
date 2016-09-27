@@ -497,7 +497,7 @@ namespace Svg
                     Indent = false,
                     NewLineOnAttributes = false,
                     NewLineHandling = NewLineHandling.None,
-                   // DoNotEscapeUriAttributes = true,
+                    DoNotEscapeUriAttributes = true,
                     OmitXmlDeclaration = true,
                   //  NewLineChars = "",
                     //NewLineHandling = NewLineHandling.Replace,
