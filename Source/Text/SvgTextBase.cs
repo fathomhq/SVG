@@ -47,12 +47,6 @@ namespace Svg
             set { this.Attributes["baseline-shift"] = value; this.IsPathDirty = true; }
         }
 
-        public override XmlSpaceHandling SpaceHandling
-        {
-            get { return base.SpaceHandling; }
-            set { base.SpaceHandling = value; this.IsPathDirty = true; }
-        }
-
         /// <summary>
         /// Gets or sets the X.
         /// </summary>
@@ -414,15 +408,7 @@ namespace Svg
         /// <returns>Prepared text</returns>
         protected string PrepareText(string value)
         {
-            if (this.SpaceHandling == XmlSpaceHandling.preserve)
-            {
-                return value.Replace('\t', ' ').Replace("\r\n", " ").Replace('\r', ' ').Replace('\n', ' ');
-            }
-            else
-            {
-                var convValue = MultipleSpaces.Replace(value.Replace("\r", "").Replace("\n", "").Replace('\t', ' '), " ");
-                return convValue;
-            }
+            return MultipleSpaces.Replace(value.Replace("\r", "").Replace("\n", "").Replace('\t', ' '), " ");
         }
 
         [SvgAttribute("onchange")]

@@ -376,17 +376,6 @@ namespace Svg
             }
         }
 
-        /// <summary>
-        /// Gets or sets the text anchor.
-        /// </summary>
-        /// <value>The text anchor.</value>
-        [SvgAttribute("space", SvgAttributeAttribute.XmlNamespace)]
-        public virtual XmlSpaceHandling SpaceHandling
-        {
-            get { return (this.Attributes["space"] == null) ? XmlSpaceHandling.@default : (XmlSpaceHandling)this.Attributes["space"]; }
-            set { this.Attributes["space"] = value; }
-        }
-
         public void SetAndForceUniqueID(string value, bool autoForceUniqueID = true, Action<SvgElement, string, string> logElementOldIDNewID = null)
         {
             // Don't do anything if it hasn't changed
