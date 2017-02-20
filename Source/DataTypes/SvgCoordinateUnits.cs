@@ -12,14 +12,14 @@ namespace Svg
     [TypeConverter(typeof(SvgCoordinateUnitsConverter))]
     public enum SvgCoordinateUnits
     {
-        Inherit,
+        inherit,
         /// <summary>
         /// Indicates that the coordinate system of the owner element is to be used.
         /// </summary>
-        ObjectBoundingBox,
+        objectBoundingBox,
         /// <summary>
         /// Indicates that the coordinate system of the entire document is to be used.
         /// </summary>
-        UserSpaceOnUse
+        userSpaceOnUse,
     }
 }

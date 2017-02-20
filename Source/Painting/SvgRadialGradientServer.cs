@@ -100,7 +100,7 @@ namespace Svg
 
         private SvgUnit NormalizeUnit(SvgUnit orig)
         {
-            return (orig.Type == SvgUnitType.Percentage && this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox ?
+            return (orig.Type == SvgUnitType.Percentage && this.GradientUnits == SvgCoordinateUnits.objectBoundingBox ?
                     new SvgUnit(SvgUnitType.User, orig.Value / 100) :
                     orig);
         }
@@ -111,7 +111,7 @@ namespace Svg
 
             try
             {
-                if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox) renderer.SetBoundable(renderingElement);
+                if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox) renderer.SetBoundable(renderingElement);
 
                 // Calculate the path and transform it appropriately
                 var center = new PointF(NormalizeUnit(CenterX).ToDeviceValue(renderer, UnitRenderingType.Horizontal, this),
@@ -129,7 +129,7 @@ namespace Svg
                 {
                     var bounds = renderer.GetBoundable().Bounds;
                     transform.Translate(bounds.X, bounds.Y, MatrixOrder.Prepend);
-                    if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox)
+                    if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox)
                     {
                         transform.Scale(bounds.Width, bounds.Height, MatrixOrder.Prepend);
                     }
@@ -143,7 +143,7 @@ namespace Svg
                 var scale = CalcScale(scaleBounds, path);
 
                 // Not ideal, but this makes sure that the rest of the shape gets properly filled or drawn
-                if (scale > 1.0f && SpreadMethod == SvgGradientSpreadMethod.Pad)
+                if (scale > 1.0f && SpreadMethod == SvgGradientSpreadMethod.pad)
                 {
                     var stop = Stops.Last();
                     var origColor = stop.GetColor(renderingElement);
@@ -201,7 +201,7 @@ namespace Svg
             }
             finally
             {
-                if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox) renderer.PopBoundable();
+                if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox) renderer.PopBoundable();
             }
         }
 
@@ -325,7 +325,7 @@ namespace Svg
             {
                 switch (this.SpreadMethod)
                 {
-                    case SvgGradientSpreadMethod.Reflect:
+                    case SvgGradientSpreadMethod.reflect:
                         newScale = (float)Math.Ceiling(scale);
                         pos = (from p in colorBlend.Positions select 1 + (p - 1) / newScale).ToList();
                         colors = colorBlend.Colors.ToList();
@@ -354,7 +354,7 @@ namespace Svg
                         colorBlend.Colors = colors.ToArray();
                         outScale = newScale;
                         break;
-                    case SvgGradientSpreadMethod.Repeat:
+                    case SvgGradientSpreadMethod.repeat:
                         newScale = (float)Math.Ceiling(scale);
                         pos = (from p in colorBlend.Positions select p / newScale).ToList();
                         colors = colorBlend.Colors.ToList();

@@ -26,7 +26,7 @@ namespace Svg
         /// </summary>
         public SvgClipPath()
         {
-            this.ClipPathUnits = SvgCoordinateUnits.Inherit;
+            this.ClipPathUnits = SvgCoordinateUnits.userSpaceOnUse;
         }
 
         private GraphicsPath cachedClipPath = null;
@@ -50,7 +50,7 @@ namespace Svg
             }
 
             var result = cachedClipPath;
-            if (ClipPathUnits == SvgCoordinateUnits.ObjectBoundingBox)
+            if (ClipPathUnits == SvgCoordinateUnits.objectBoundingBox)
             {
                 result = (GraphicsPath)cachedClipPath.Clone();
                 using (var transform = new Matrix())

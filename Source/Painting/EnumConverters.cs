@@ -86,7 +86,7 @@ namespace Svg
         {
             if (destinationType == typeof(string))
             {
-            	return ((T)value).ToString().ToLower();
+            	return ((T)value).ToString(); //.ToLower();
             }
 
             return base.ConvertTo(context, culture, value, destinationType);
@@ -141,12 +141,12 @@ namespace Svg
     {
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value == null || value.ToString() == "") return SvgCoordinateUnits.Inherit;
+            if (value == null || value.ToString() == "") return SvgCoordinateUnits.inherit;
             return base.ConvertFrom(context, culture, value);
         }
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType == typeof(string) && value is SvgCoordinateUnits && (SvgCoordinateUnits)value == SvgCoordinateUnits.Inherit)
+            if (destinationType == typeof(string) && value is SvgCoordinateUnits && (SvgCoordinateUnits)value == SvgCoordinateUnits.inherit)
             {
                 return null;
             }

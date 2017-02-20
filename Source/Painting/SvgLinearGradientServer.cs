@@ -94,7 +94,7 @@ namespace Svg
 
             try
             {
-                if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox) renderer.SetBoundable(renderingElement);
+                if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox) renderer.SetBoundable(renderingElement);
 
                 var points = new PointF[] {
                     SvgUnit.GetDevicePoint(NormalizeUnit(this.X1), NormalizeUnit(this.Y1), renderer, this),
@@ -112,7 +112,7 @@ namespace Svg
                 {
                     var midPoint = new PointF((points[0].X + points[1].X) / 2, (points[0].Y + points[1].Y) / 2);
                     transform.Translate(bounds.X, bounds.Y, MatrixOrder.Prepend);
-                    if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox)
+                    if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox)
                     {
                         // Transform a normal (i.e. perpendicular line) according to the transform
                         transform.Scale(bounds.Width, bounds.Height, MatrixOrder.Prepend);
@@ -121,7 +121,7 @@ namespace Svg
                     transform.TransformPoints(points);
                 }
 
-                if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox)
+                if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox)
                 {
                     // Transform the normal line back to a line such that the gradient still starts in the correct corners, but
                     // has the proper normal vector based on the transforms.  If you work out the geometry, these formulas should work.
@@ -170,13 +170,13 @@ namespace Svg
             }
             finally
             {
-                if (this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox) renderer.PopBoundable();
+                if (this.GradientUnits == SvgCoordinateUnits.objectBoundingBox) renderer.PopBoundable();
             }
         }
 
         private SvgUnit NormalizeUnit(SvgUnit orig)
         {
-            return (orig.Type == SvgUnitType.Percentage && this.GradientUnits == SvgCoordinateUnits.ObjectBoundingBox ?
+            return (orig.Type == SvgUnitType.Percentage && this.GradientUnits == SvgCoordinateUnits.objectBoundingBox ?
                     new SvgUnit(SvgUnitType.User, orig.Value / 100) :
                     orig);
         }
@@ -245,8 +245,8 @@ namespace Svg
 
             switch (SpreadMethod)
             {
-                case SvgGradientSpreadMethod.Reflect:
-                case SvgGradientSpreadMethod.Repeat:
+                case SvgGradientSpreadMethod.reflect:
+                case SvgGradientSpreadMethod.repeat:
                     var specifiedLength = CalculateDistance(specifiedStart, specifiedEnd);
                     var specifiedUnitVector = new PointF((specifiedEnd.X - specifiedStart.X) / (float)specifiedLength, (specifiedEnd.Y - specifiedStart.Y) / (float)specifiedLength);
                     var oppUnitVector = new PointF(-specifiedUnitVector.X, -specifiedUnitVector.Y);
@@ -329,7 +329,7 @@ namespace Svg
 
             switch (SpreadMethod)
             {
-                case SvgGradientSpreadMethod.Reflect:
+                case SvgGradientSpreadMethod.reflect:
                     startExtend = (float)(Math.Ceiling(CalculateDistance(effectiveStart, specifiedStart) / specifiedLength));
                     endExtend = (float)(Math.Ceiling(CalculateDistance(effectiveEnd, specifiedEnd) / specifiedLength));
                     colors = colorBlend.Colors.ToList();
@@ -380,7 +380,7 @@ namespace Svg
                     colorBlend.Colors = colors.ToArray();
                     colorBlend.Positions = (from p in positions select p / (startExtend + 1 + endExtend)).ToArray();
                     break;
-                case SvgGradientSpreadMethod.Repeat:
+                case SvgGradientSpreadMethod.repeat:
                     startExtend = (float)(Math.Ceiling(CalculateDistance(effectiveStart, specifiedStart) / specifiedLength));
                     endExtend = (float)(Math.Ceiling(CalculateDistance(effectiveEnd, specifiedEnd) / specifiedLength));
                     colors = new List<Color>();

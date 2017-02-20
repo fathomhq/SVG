@@ -21,8 +21,8 @@ namespace Svg
         /// </summary>
         internal SvgGradientServer()
         {
-            this.GradientUnits = SvgCoordinateUnits.ObjectBoundingBox;
-            this.SpreadMethod = SvgGradientSpreadMethod.Pad;
+            this.GradientUnits = SvgCoordinateUnits.objectBoundingBox;
+            this.SpreadMethod = SvgGradientSpreadMethod.pad;
             this._stops = new List<SvgGradientStop>();
         }
 
