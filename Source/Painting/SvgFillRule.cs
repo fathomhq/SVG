@@ -8,8 +8,8 @@ namespace Svg
 	[TypeConverter(typeof(SvgFillRuleConverter))]
     public enum SvgFillRule
     {
-        NonZero,
-        EvenOdd,
-        Inherit
+        nonzero,
+        evenodd,
+        inherit
     }
 }

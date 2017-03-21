@@ -67,7 +67,7 @@ namespace Svg
         [SvgAttribute("clip-rule")]
         public SvgClipRule ClipRule
         {
-            get { return this.Attributes.GetAttribute<SvgClipRule>("clip-rule", SvgClipRule.NonZero); }
+            get { return this.Attributes.GetAttribute<SvgClipRule>("clip-rule", SvgClipRule.nonzero); }
             set { this.Attributes["clip-rule"] = value; }
         }
 
@@ -182,7 +182,7 @@ namespace Svg
                 {
                     if (brush != null)
                     {
-                        this.Path(renderer).FillMode = this.FillRule == SvgFillRule.NonZero ? FillMode.Winding : FillMode.Alternate;
+                        this.Path(renderer).FillMode = this.FillRule == SvgFillRule.nonzero ? FillMode.Winding : FillMode.Alternate;
                         renderer.FillPath(brush, this.Path(renderer));
                     }
                 }

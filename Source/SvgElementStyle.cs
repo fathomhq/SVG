@@ -56,7 +56,7 @@ namespace Svg
         [SvgAttribute("fill-rule", true)]
         public virtual SvgFillRule FillRule
         {
-            get { return (this.Attributes["fill-rule"] == null) ? SvgFillRule.NonZero : (SvgFillRule)this.Attributes["fill-rule"]; }
+            get { return (this.Attributes["fill-rule"] == null) ? SvgFillRule.nonzero : (SvgFillRule)this.Attributes["fill-rule"]; }
             set { this.Attributes["fill-rule"] = value; }
         }
 

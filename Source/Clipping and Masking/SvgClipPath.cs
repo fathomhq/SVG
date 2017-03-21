@@ -76,7 +76,7 @@ namespace Svg
 
             if (graphicsElement != null && graphicsElement.Path(null) != null)
             {
-                path.FillMode = (graphicsElement.ClipRule == SvgClipRule.NonZero) ? FillMode.Winding : FillMode.Alternate;
+                path.FillMode = (graphicsElement.ClipRule == SvgClipRule.nonzero) ? FillMode.Winding : FillMode.Alternate;
 
                 GraphicsPath childPath = graphicsElement.Path(null);
 
