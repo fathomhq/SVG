@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
+using Svg.Clipping_and_Masking;
 
 namespace Svg
 {
@@ -100,6 +101,10 @@ namespace Svg
     
     //implementaton for clip rule
     public sealed class SvgClipRuleConverter : EnumBaseConverter<SvgClipRule>
+    {
+    }
+
+    public sealed class SvgMaskUnitConverter : EnumBaseConverter<SvgMaskUnit>
     {
     }
     
