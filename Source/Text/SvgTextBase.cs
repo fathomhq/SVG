@@ -314,7 +314,7 @@ namespace Svg
         private void SetPath(TextDrawingState state, bool doMeasurements)
         {
             TextDrawingState origState = null;
-            bool alignOnBaseline = state.BaselinePath != null && (this.TextAnchor == SvgTextAnchor.Middle || this.TextAnchor == SvgTextAnchor.End);
+            bool alignOnBaseline = state.BaselinePath != null && (this.TextAnchor == SvgTextAnchor.middle || this.TextAnchor == SvgTextAnchor.end);
 
             if (doMeasurements)
             {
@@ -381,7 +381,7 @@ namespace Svg
                 else if (alignOnBaseline)
                 {
                     var bounds = path.GetBounds();
-                    if (this.TextAnchor == SvgTextAnchor.Middle)
+                    if (this.TextAnchor == SvgTextAnchor.middle)
                     {
                         origState.StartOffsetAdjust = -1 * bounds.Width / 2;
                     }
@@ -810,10 +810,10 @@ namespace Svg
                         var xOffset = 0f; //_xAnchor - minX;
                         switch (Element.TextAnchor)
                         {
-                            case SvgTextAnchor.Middle:
+                            case SvgTextAnchor.middle:
                                 xOffset -= (maxX - minX) / 2;
                                 break;
-                            case SvgTextAnchor.End:
+                            case SvgTextAnchor.end:
                                 xOffset -= (maxX - minX);
                                 break;
                         }
