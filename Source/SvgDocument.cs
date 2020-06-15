@@ -208,7 +208,9 @@ namespace Svg
             using (var strReader = new System.IO.StringReader(svg))
             {
                 var reader = new SvgTextReader(strReader, null);
-                reader.XmlResolver = new SvgDtdResolver();
+                //VULNERABILITY: The inbuilt resolver is not secure!
+                //NOTE: Setting the resolver to null prevents external references from being resolved
+                reader.XmlResolver = null;
                 reader.WhitespaceHandling = WhitespaceHandling.None;
                 return Open<T>(reader);
             }
@@ -229,7 +231,9 @@ namespace Svg
 
             // Don't close the stream via a dispose: that is the client's job.
             var reader = new SvgTextReader(stream, entities);
-            reader.XmlResolver = new SvgDtdResolver();
+            //VULNERABILITY: The inbuilt resolver is not secure!
+            //NOTE: Setting the resolver to null prevents external references from being resolved
+            reader.XmlResolver = null;
             reader.WhitespaceHandling = WhitespaceHandling.None;
             return Open<T>(reader);
         }
